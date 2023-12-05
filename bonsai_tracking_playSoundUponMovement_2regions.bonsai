@@ -236,7 +236,7 @@
         <Combinator xsi:type="al:PlaySource">
           <al:DeviceName>Generic Software on Speakers / Headphones (Realtek Audio)</al:DeviceName>
           <al:SourceName>
-            <al:string>leaf1</al:string>
+            <al:string>beep</al:string>
           </al:SourceName>
         </Combinator>
       </Expression>
@@ -264,7 +264,7 @@
         <Combinator xsi:type="al:PauseSource">
           <al:DeviceName>Generic Software on Speakers / Headphones (Realtek Audio)</al:DeviceName>
           <al:SourceName>
-            <al:string>leaf1</al:string>
+            <al:string>beep</al:string>
           </al:SourceName>
         </Combinator>
       </Expression>
@@ -272,7 +272,7 @@
         <Combinator xsi:type="al:RewindSource">
           <al:DeviceName>Generic Software on Speakers / Headphones (Realtek Audio)</al:DeviceName>
           <al:SourceName>
-            <al:string>leaf1</al:string>
+            <al:string>beep</al:string>
           </al:SourceName>
         </Combinator>
       </Expression>
