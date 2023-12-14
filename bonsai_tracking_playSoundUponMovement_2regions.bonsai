@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.7.0"
+<WorkflowBuilder Version="2.7.3"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
-                 xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
                  xmlns:al="clr-namespace:Bonsai.Audio;assembly=Bonsai.Audio"
                  xmlns:res="clr-namespace:Bonsai.Resources;assembly=Bonsai.System"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
+                 xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
                  xmlns:spk="clr-namespace:Bonsai.Spinnaker;assembly=Bonsai.Spinnaker"
                  xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
@@ -17,6 +17,271 @@
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="al:CreateAudioContext">
+          <al:DeviceName>Generic Software on 1 - HDMI (AMD High Definition Audio Device)</al:DeviceName>
+          <al:SampleRate>0</al:SampleRate>
+          <al:Refresh>0</al:Refresh>
+          <al:Position>
+            <al:X>0</al:X>
+            <al:Y>0</al:Y>
+            <al:Z>0</al:Z>
+          </al:Position>
+          <al:Velocity>
+            <al:X>0</al:X>
+            <al:Y>0</al:Y>
+            <al:Z>0</al:Z>
+          </al:Velocity>
+          <al:Direction>
+            <al:X>-0</al:X>
+            <al:Y>-0</al:Y>
+            <al:Z>-1</al:Z>
+          </al:Direction>
+          <al:Up>
+            <al:X>0</al:X>
+            <al:Y>1</al:Y>
+            <al:Z>0</al:Z>
+          </al:Up>
+          <al:Gain>1</al:Gain>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="al:AudioResources">
+          <al:Buffers>
+            <al:BufferConfiguration xsi:type="al:SoundBuffer">
+              <al:Name>leaf</al:Name>
+              <al:FileName>leaf.wav</al:FileName>
+            </al:BufferConfiguration>
+            <al:BufferConfiguration xsi:type="al:SoundBuffer">
+              <al:Name>beep</al:Name>
+              <al:FileName>Practice-Pad-Buzz-Stroke.wav</al:FileName>
+            </al:BufferConfiguration>
+          </al:Buffers>
+          <al:Sources>
+            <al:SourceConfiguration>
+              <al:Name>leaf</al:Name>
+              <al:BufferName>leaf</al:BufferName>
+              <al:Gain>1</al:Gain>
+              <al:Pitch>1</al:Pitch>
+              <al:Direction>
+                <al:X>0</al:X>
+                <al:Y>0</al:Y>
+                <al:Z>0</al:Z>
+              </al:Direction>
+              <al:Position>
+                <al:X>0</al:X>
+                <al:Y>0</al:Y>
+                <al:Z>0</al:Z>
+              </al:Position>
+              <al:Velocity>
+                <al:X>0</al:X>
+                <al:Y>0</al:Y>
+                <al:Z>0</al:Z>
+              </al:Velocity>
+              <al:Looping>true</al:Looping>
+              <al:Relative>false</al:Relative>
+              <al:State>Initial</al:State>
+            </al:SourceConfiguration>
+            <al:SourceConfiguration>
+              <al:Name>beep</al:Name>
+              <al:BufferName>beep</al:BufferName>
+              <al:Gain>1</al:Gain>
+              <al:Pitch>1</al:Pitch>
+              <al:Direction>
+                <al:X>0</al:X>
+                <al:Y>0</al:Y>
+                <al:Z>0</al:Z>
+              </al:Direction>
+              <al:Position>
+                <al:X>0</al:X>
+                <al:Y>0</al:Y>
+                <al:Z>0</al:Z>
+              </al:Position>
+              <al:Velocity>
+                <al:X>0</al:X>
+                <al:Y>0</al:Y>
+                <al:Z>0</al:Z>
+              </al:Velocity>
+              <al:Looping>true</al:Looping>
+              <al:Relative>false</al:Relative>
+              <al:State>Initial</al:State>
+            </al:SourceConfiguration>
+          </al:Sources>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="res:LoadResources" />
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>ToggleMovementRoi1</Name>
+      </Expression>
+      <Expression xsi:type="rx:Condition">
+        <Name>isTrue</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="Equal">
+              <Operand xsi:type="BooleanProperty">
+                <Value>true</Value>
+              </Operand>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="al:PlaySource">
+          <al:DeviceName>Generic Software on 1 - HDMI (AMD High Definition Audio Device)</al:DeviceName>
+          <al:SourceName>
+            <al:string>leaf</al:string>
+          </al:SourceName>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="rx:Condition">
+        <Name>isFalse</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="Equal">
+              <Operand xsi:type="BooleanProperty">
+                <Value>false</Value>
+              </Operand>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="al:PauseSource">
+          <al:DeviceName>Generic Software on 1 - HDMI (AMD High Definition Audio Device)</al:DeviceName>
+          <al:SourceName>
+            <al:string>leaf</al:string>
+          </al:SourceName>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="al:RewindSource">
+          <al:DeviceName>Generic Software on 1 - HDMI (AMD High Definition Audio Device)</al:DeviceName>
+          <al:SourceName>
+            <al:string>leaf</al:string>
+          </al:SourceName>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>ToggleMovementRoi2</Name>
+      </Expression>
+      <Expression xsi:type="rx:Condition">
+        <Name>isTrue</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="Equal">
+              <Operand xsi:type="BooleanProperty">
+                <Value>true</Value>
+              </Operand>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="al:PlaySource">
+          <al:DeviceName>Generic Software on 1 - HDMI (AMD High Definition Audio Device)</al:DeviceName>
+          <al:SourceName>
+            <al:string>beep</al:string>
+          </al:SourceName>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="rx:Condition">
+        <Name>isFalse</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="Equal">
+              <Operand xsi:type="BooleanProperty">
+                <Value>false</Value>
+              </Operand>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="al:PauseSource">
+          <al:DeviceName>Generic Software on 1 - HDMI (AMD High Definition Audio Device)</al:DeviceName>
+          <al:SourceName>
+            <al:string>beep</al:string>
+          </al:SourceName>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="al:RewindSource">
+          <al:DeviceName>Generic Software on 1 - HDMI (AMD High Definition Audio Device)</al:DeviceName>
+          <al:SourceName>
+            <al:string>beep</al:string>
+          </al:SourceName>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="al:AudioCapture">
+            <al:DeviceName>Analog (1+2) (RME Fireface UCX)</al:DeviceName>
+            <al:SampleRate>192000</al:SampleRate>
+            <al:SampleFormat>Mono16</al:SampleFormat>
+            <al:BufferLength>100</al:BufferLength>
+          </Combinator>
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="al:AudioWriter">
+            <al:FileName>data\mic1_.wav</al:FileName>
+            <al:Suffix>Timestamp</al:Suffix>
+            <al:Buffered>true</al:Buffered>
+            <al:Overwrite>false</al:Overwrite>
+            <al:SampleRate>192000</al:SampleRate>
+          </Combinator>
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="rx:Timestamp" />
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="io:CsvWriter">
+          <io:FileName>data\mic01_.csv</io:FileName>
+          <io:Append>false</io:Append>
+          <io:Overwrite>false</io:Overwrite>
+          <io:Suffix>Timestamp</io:Suffix>
+          <io:IncludeHeader>true</io:IncludeHeader>
+          <io:Selector>Timestamp.TimeOfDay.TotalSeconds</io:Selector>
+        </Builder>
+      </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>Some params</Name>
         <Workflow>
@@ -165,271 +430,6 @@
         </Workflow>
       </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="al:CreateAudioContext">
-          <al:DeviceName>Generic Software on Speakers / Headphones (Realtek Audio)</al:DeviceName>
-          <al:SampleRate>0</al:SampleRate>
-          <al:Refresh>0</al:Refresh>
-          <al:Position>
-            <al:X>0</al:X>
-            <al:Y>0</al:Y>
-            <al:Z>0</al:Z>
-          </al:Position>
-          <al:Velocity>
-            <al:X>0</al:X>
-            <al:Y>0</al:Y>
-            <al:Z>0</al:Z>
-          </al:Velocity>
-          <al:Direction>
-            <al:X>-0</al:X>
-            <al:Y>-0</al:Y>
-            <al:Z>-1</al:Z>
-          </al:Direction>
-          <al:Up>
-            <al:X>0</al:X>
-            <al:Y>1</al:Y>
-            <al:Z>0</al:Z>
-          </al:Up>
-          <al:Gain>1</al:Gain>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="al:AudioResources">
-          <al:Buffers>
-            <al:BufferConfiguration xsi:type="al:SoundBuffer">
-              <al:Name>leaf1</al:Name>
-              <al:FileName>Practice-Pad-Buzz-Stroke.wav</al:FileName>
-            </al:BufferConfiguration>
-            <al:BufferConfiguration xsi:type="al:SoundBuffer">
-              <al:Name>beep</al:Name>
-              <al:FileName>beep-05.wav</al:FileName>
-            </al:BufferConfiguration>
-          </al:Buffers>
-          <al:Sources>
-            <al:SourceConfiguration>
-              <al:Name>leaf1</al:Name>
-              <al:BufferName>leaf1</al:BufferName>
-              <al:Gain>1</al:Gain>
-              <al:Pitch>1</al:Pitch>
-              <al:Direction>
-                <al:X>0</al:X>
-                <al:Y>0</al:Y>
-                <al:Z>0</al:Z>
-              </al:Direction>
-              <al:Position>
-                <al:X>0</al:X>
-                <al:Y>0</al:Y>
-                <al:Z>0</al:Z>
-              </al:Position>
-              <al:Velocity>
-                <al:X>0</al:X>
-                <al:Y>0</al:Y>
-                <al:Z>0</al:Z>
-              </al:Velocity>
-              <al:Looping>true</al:Looping>
-              <al:Relative>false</al:Relative>
-              <al:State>Initial</al:State>
-            </al:SourceConfiguration>
-            <al:SourceConfiguration>
-              <al:Name>beep</al:Name>
-              <al:BufferName>beep</al:BufferName>
-              <al:Gain>1</al:Gain>
-              <al:Pitch>1</al:Pitch>
-              <al:Direction>
-                <al:X>0</al:X>
-                <al:Y>0</al:Y>
-                <al:Z>0</al:Z>
-              </al:Direction>
-              <al:Position>
-                <al:X>0</al:X>
-                <al:Y>0</al:Y>
-                <al:Z>0</al:Z>
-              </al:Position>
-              <al:Velocity>
-                <al:X>0</al:X>
-                <al:Y>0</al:Y>
-                <al:Z>0</al:Z>
-              </al:Velocity>
-              <al:Looping>true</al:Looping>
-              <al:Relative>false</al:Relative>
-              <al:State>Initial</al:State>
-            </al:SourceConfiguration>
-          </al:Sources>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="res:LoadResources" />
-      </Expression>
-      <Expression xsi:type="SubscribeSubject">
-        <Name>ToggleMovementRoi1</Name>
-      </Expression>
-      <Expression xsi:type="rx:Condition">
-        <Name>isTrue</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="WorkflowInput">
-              <Name>Source1</Name>
-            </Expression>
-            <Expression xsi:type="Equal">
-              <Operand xsi:type="BooleanProperty">
-                <Value>true</Value>
-              </Operand>
-            </Expression>
-            <Expression xsi:type="WorkflowOutput" />
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="1" Label="Source1" />
-            <Edge From="1" To="2" Label="Source1" />
-          </Edges>
-        </Workflow>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="al:PlaySource">
-          <al:DeviceName>Generic Software on Speakers / Headphones (Realtek Audio)</al:DeviceName>
-          <al:SourceName>
-            <al:string>leaf1</al:string>
-          </al:SourceName>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="rx:Condition">
-        <Name>isFalse</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="WorkflowInput">
-              <Name>Source1</Name>
-            </Expression>
-            <Expression xsi:type="Equal">
-              <Operand xsi:type="BooleanProperty">
-                <Value>false</Value>
-              </Operand>
-            </Expression>
-            <Expression xsi:type="WorkflowOutput" />
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="1" Label="Source1" />
-            <Edge From="1" To="2" Label="Source1" />
-          </Edges>
-        </Workflow>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="al:PauseSource">
-          <al:DeviceName>Generic Software on Speakers / Headphones (Realtek Audio)</al:DeviceName>
-          <al:SourceName>
-            <al:string>leaf1</al:string>
-          </al:SourceName>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="al:RewindSource">
-          <al:DeviceName>Generic Software on Speakers / Headphones (Realtek Audio)</al:DeviceName>
-          <al:SourceName>
-            <al:string>leaf1</al:string>
-          </al:SourceName>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="SubscribeSubject">
-        <Name>ToggleMovementRoi2</Name>
-      </Expression>
-      <Expression xsi:type="rx:Condition">
-        <Name>isTrue</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="WorkflowInput">
-              <Name>Source1</Name>
-            </Expression>
-            <Expression xsi:type="Equal">
-              <Operand xsi:type="BooleanProperty">
-                <Value>true</Value>
-              </Operand>
-            </Expression>
-            <Expression xsi:type="WorkflowOutput" />
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="1" Label="Source1" />
-            <Edge From="1" To="2" Label="Source1" />
-          </Edges>
-        </Workflow>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="al:PlaySource">
-          <al:DeviceName>Generic Software on Speakers / Headphones (Realtek Audio)</al:DeviceName>
-          <al:SourceName>
-            <al:string>beep</al:string>
-          </al:SourceName>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="rx:Condition">
-        <Name>isFalse</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="WorkflowInput">
-              <Name>Source1</Name>
-            </Expression>
-            <Expression xsi:type="Equal">
-              <Operand xsi:type="BooleanProperty">
-                <Value>false</Value>
-              </Operand>
-            </Expression>
-            <Expression xsi:type="WorkflowOutput" />
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="1" Label="Source1" />
-            <Edge From="1" To="2" Label="Source1" />
-          </Edges>
-        </Workflow>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="al:PauseSource">
-          <al:DeviceName>Generic Software on Speakers / Headphones (Realtek Audio)</al:DeviceName>
-          <al:SourceName>
-            <al:string>beep</al:string>
-          </al:SourceName>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="al:RewindSource">
-          <al:DeviceName>Generic Software on Speakers / Headphones (Realtek Audio)</al:DeviceName>
-          <al:SourceName>
-            <al:string>beep</al:string>
-          </al:SourceName>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="Combinator">
-          <Combinator xsi:type="al:AudioCapture">
-            <al:DeviceName>Analog (1+2) (RME Fireface UCX)</al:DeviceName>
-            <al:SampleRate>192000</al:SampleRate>
-            <al:SampleFormat>Mono16</al:SampleFormat>
-            <al:BufferLength>100</al:BufferLength>
-          </Combinator>
-        </Builder>
-      </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="Combinator">
-          <Combinator xsi:type="al:AudioWriter">
-            <al:FileName>data\mic1_.wav</al:FileName>
-            <al:Suffix>Timestamp</al:Suffix>
-            <al:Buffered>true</al:Buffered>
-            <al:Overwrite>false</al:Overwrite>
-            <al:SampleRate>192000</al:SampleRate>
-          </Combinator>
-        </Builder>
-      </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="Combinator">
-          <Combinator xsi:type="rx:Timestamp" />
-        </Builder>
-      </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="io:CsvWriter">
-          <io:FileName>data\mic01_.csv</io:FileName>
-          <io:Append>false</io:Append>
-          <io:Overwrite>false</io:Overwrite>
-          <io:Suffix>Timestamp</io:Suffix>
-          <io:IncludeHeader>true</io:IncludeHeader>
-          <io:Selector>Timestamp.TimeOfDay.TotalSeconds</io:Selector>
-        </Builder>
-      </Expression>
-      <Expression xsi:type="Combinator">
         <Combinator xsi:type="spk:SpinnakerCapture">
           <spk:Index xsi:nil="true" />
           <spk:SerialNumber>23072324</spk:SerialNumber>
@@ -574,7 +574,7 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="drw:AddText">
-          <drw:Text>478</drw:Text>
+          <drw:Text>597</drw:Text>
           <drw:Alignment>Near</drw:Alignment>
           <drw:LineAlignment>Near</drw:LineAlignment>
           <drw:TextRenderingHint>AntiAliasGridFit</drw:TextRenderingHint>
@@ -596,7 +596,7 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:VideoWriter">
-          <cv:FileName>data\20231204_134211_cam1.avi</cv:FileName>
+          <cv:FileName>data\20231214_140851_cam1.avi</cv:FileName>
           <cv:Suffix>None</cv:Suffix>
           <cv:Buffered>true</cv:Buffered>
           <cv:Overwrite>false</cv:Overwrite>
@@ -647,7 +647,7 @@
         <scr:Expression>new(Item2 as Timestamp_camera_clock_us, Item1 as Timestamp_bonsai_clock_s, Item3 as FrameID)</scr:Expression>
       </Expression>
       <Expression xsi:type="io:CsvWriter">
-        <io:FileName>data\20231204_134211_cam1.csv</io:FileName>
+        <io:FileName>data\20231214_140851_cam1.csv</io:FileName>
         <io:Append>false</io:Append>
         <io:Overwrite>false</io:Overwrite>
         <io:Suffix>None</io:Suffix>
@@ -696,48 +696,20 @@
             </cv:ArrayOfPoint>
             <cv:ArrayOfPoint>
               <cv:Point>
-                <cv:X>171</cv:X>
-                <cv:Y>154</cv:Y>
+                <cv:X>273</cv:X>
+                <cv:Y>85</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>156</cv:X>
-                <cv:Y>8</cv:Y>
+                <cv:X>740</cv:X>
+                <cv:Y>79</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>457</cv:X>
-                <cv:Y>8</cv:Y>
+                <cv:X>740</cv:X>
+                <cv:Y>996</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>457</cv:X>
-                <cv:Y>154</cv:Y>
-              </cv:Point>
-              <cv:Point>
-                <cv:X>393</cv:X>
-                <cv:Y>249</cv:Y>
-              </cv:Point>
-              <cv:Point>
-                <cv:X>530</cv:X>
-                <cv:Y>290</cv:Y>
-              </cv:Point>
-              <cv:Point>
-                <cv:X>588</cv:X>
-                <cv:Y>499</cv:Y>
-              </cv:Point>
-              <cv:Point>
-                <cv:X>300</cv:X>
-                <cv:Y>548</cv:Y>
-              </cv:Point>
-              <cv:Point>
-                <cv:X>264</cv:X>
-                <cv:Y>357</cv:Y>
-              </cv:Point>
-              <cv:Point>
-                <cv:X>334</cv:X>
-                <cv:Y>262</cv:Y>
-              </cv:Point>
-              <cv:Point>
-                <cv:X>249</cv:X>
-                <cv:Y>260</cv:Y>
+                <cv:X>273</cv:X>
+                <cv:Y>994</cv:Y>
               </cv:Point>
             </cv:ArrayOfPoint>
           </cv:Regions>
@@ -768,10 +740,12 @@
           </Combinator>
         </Builder>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:ConvertColor">
-          <cv:Conversion>Rgb2Gray</cv:Conversion>
-        </Combinator>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="cv:ConvertColor">
+            <cv:Conversion>Rgb2Gray</cv:Conversion>
+          </Combinator>
+        </Builder>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:Threshold">
@@ -859,10 +833,12 @@ def process(value):
           <Selector>Area</Selector>
         </Builder>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:ConvertColor">
-          <cv:Conversion>Rgb2Gray</cv:Conversion>
-        </Combinator>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="cv:ConvertColor">
+            <cv:Conversion>Rgb2Gray</cv:Conversion>
+          </Combinator>
+        </Builder>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:BackgroundSubtraction">
@@ -910,48 +886,20 @@ def process(value):
             </cv:ArrayOfPoint>
             <cv:ArrayOfPoint>
               <cv:Point>
-                <cv:X>171</cv:X>
-                <cv:Y>154</cv:Y>
+                <cv:X>743</cv:X>
+                <cv:Y>72</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>156</cv:X>
-                <cv:Y>8</cv:Y>
+                <cv:X>1213</cv:X>
+                <cv:Y>72</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>457</cv:X>
-                <cv:Y>8</cv:Y>
+                <cv:X>1213</cv:X>
+                <cv:Y>990</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>457</cv:X>
-                <cv:Y>154</cv:Y>
-              </cv:Point>
-              <cv:Point>
-                <cv:X>393</cv:X>
-                <cv:Y>249</cv:Y>
-              </cv:Point>
-              <cv:Point>
-                <cv:X>530</cv:X>
-                <cv:Y>290</cv:Y>
-              </cv:Point>
-              <cv:Point>
-                <cv:X>588</cv:X>
-                <cv:Y>499</cv:Y>
-              </cv:Point>
-              <cv:Point>
-                <cv:X>300</cv:X>
-                <cv:Y>548</cv:Y>
-              </cv:Point>
-              <cv:Point>
-                <cv:X>264</cv:X>
-                <cv:Y>357</cv:Y>
-              </cv:Point>
-              <cv:Point>
-                <cv:X>334</cv:X>
-                <cv:Y>262</cv:Y>
-              </cv:Point>
-              <cv:Point>
-                <cv:X>249</cv:X>
-                <cv:Y>260</cv:Y>
+                <cv:X>743</cv:X>
+                <cv:Y>990</cv:Y>
               </cv:Point>
             </cv:ArrayOfPoint>
           </cv:Regions>
@@ -997,10 +945,12 @@ def process(value):
           </Combinator>
         </Builder>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:ConvertColor">
-          <cv:Conversion>Rgb2Gray</cv:Conversion>
-        </Combinator>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="cv:ConvertColor">
+            <cv:Conversion>Rgb2Gray</cv:Conversion>
+          </Combinator>
+        </Builder>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:Threshold">
@@ -1088,10 +1038,12 @@ def process(value):
           <Selector>Area</Selector>
         </Builder>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:ConvertColor">
-          <cv:Conversion>Rgb2Gray</cv:Conversion>
-        </Combinator>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="cv:ConvertColor">
+            <cv:Conversion>Rgb2Gray</cv:Conversion>
+          </Combinator>
+        </Builder>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:BackgroundSubtraction">
@@ -1451,7 +1403,7 @@ def process(value):
       </Expression>
       <Expression xsi:type="GreaterThan">
         <Operand xsi:type="IntProperty">
-          <Value>150</Value>
+          <Value>5</Value>
         </Operand>
       </Expression>
       <Expression xsi:type="Combinator">
@@ -1488,7 +1440,7 @@ def process(value):
       </Expression>
       <Expression xsi:type="GreaterThan">
         <Operand xsi:type="IntProperty">
-          <Value>150</Value>
+          <Value>5</Value>
         </Operand>
       </Expression>
       <Expression xsi:type="Combinator">
@@ -1692,21 +1644,21 @@ def process(value):
       </Expression>
     </Nodes>
     <Edges>
+      <Edge From="0" To="1" Label="Source1" />
       <Edge From="1" To="2" Label="Source1" />
-      <Edge From="2" To="3" Label="Source1" />
+      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="3" To="6" Label="Source1" />
       <Edge From="4" To="5" Label="Source1" />
-      <Edge From="4" To="7" Label="Source1" />
-      <Edge From="5" To="6" Label="Source1" />
+      <Edge From="6" To="7" Label="Source1" />
       <Edge From="7" To="8" Label="Source1" />
-      <Edge From="8" To="9" Label="Source1" />
+      <Edge From="9" To="10" Label="Source1" />
+      <Edge From="9" To="12" Label="Source1" />
       <Edge From="10" To="11" Label="Source1" />
-      <Edge From="10" To="13" Label="Source1" />
-      <Edge From="11" To="12" Label="Source1" />
+      <Edge From="12" To="13" Label="Source1" />
       <Edge From="13" To="14" Label="Source1" />
-      <Edge From="14" To="15" Label="Source1" />
-      <Edge From="16" To="17" Label="Source1" />
-      <Edge From="16" To="18" Label="Source1" />
-      <Edge From="18" To="19" Label="Source1" />
+      <Edge From="15" To="16" Label="Source1" />
+      <Edge From="15" To="17" Label="Source1" />
+      <Edge From="17" To="18" Label="Source1" />
       <Edge From="20" To="21" Label="Source1" />
       <Edge From="20" To="29" Label="Source1" />
       <Edge From="20" To="31" Label="Source1" />
