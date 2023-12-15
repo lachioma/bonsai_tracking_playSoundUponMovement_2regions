@@ -304,7 +304,7 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="IntProperty">
-                <Value>5</Value>
+                <Value>150</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="rx:BehaviorSubject">
@@ -574,7 +574,7 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="drw:AddText">
-          <drw:Text>597</drw:Text>
+          <drw:Text>1929</drw:Text>
           <drw:Alignment>Near</drw:Alignment>
           <drw:LineAlignment>Near</drw:LineAlignment>
           <drw:TextRenderingHint>AntiAliasGridFit</drw:TextRenderingHint>
@@ -596,7 +596,7 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:VideoWriter">
-          <cv:FileName>data\20231214_140851_cam1.avi</cv:FileName>
+          <cv:FileName>data\20231215_181638_cam1.avi</cv:FileName>
           <cv:Suffix>None</cv:Suffix>
           <cv:Buffered>true</cv:Buffered>
           <cv:Overwrite>false</cv:Overwrite>
@@ -647,7 +647,7 @@
         <scr:Expression>new(Item2 as Timestamp_camera_clock_us, Item1 as Timestamp_bonsai_clock_s, Item3 as FrameID)</scr:Expression>
       </Expression>
       <Expression xsi:type="io:CsvWriter">
-        <io:FileName>data\20231214_140851_cam1.csv</io:FileName>
+        <io:FileName>data\20231215_181638_cam1.csv</io:FileName>
         <io:Append>false</io:Append>
         <io:Overwrite>false</io:Overwrite>
         <io:Suffix>None</io:Suffix>
@@ -696,20 +696,20 @@
             </cv:ArrayOfPoint>
             <cv:ArrayOfPoint>
               <cv:Point>
-                <cv:X>273</cv:X>
-                <cv:Y>85</cv:Y>
+                <cv:X>240</cv:X>
+                <cv:Y>49</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>740</cv:X>
-                <cv:Y>79</cv:Y>
+                <cv:X>741</cv:X>
+                <cv:Y>42</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>740</cv:X>
-                <cv:Y>996</cv:Y>
+                <cv:X>743</cv:X>
+                <cv:Y>1032</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>273</cv:X>
-                <cv:Y>994</cv:Y>
+                <cv:X>247</cv:X>
+                <cv:Y>1033</cv:Y>
               </cv:Point>
             </cv:ArrayOfPoint>
           </cv:Regions>
@@ -763,7 +763,7 @@
             <cv:Y>0</cv:Y>
           </cv:Offset>
           <cv:MinArea>500</cv:MinArea>
-          <cv:MaxArea>2000</cv:MaxArea>
+          <cv:MaxArea>6000</cv:MaxArea>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
@@ -828,10 +828,8 @@ def process(value):
       <Expression xsi:type="rx:BehaviorSubject">
         <Name>VelCentroid_roi1</Name>
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="MemberSelector">
-          <Selector>Area</Selector>
-        </Builder>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Area</Selector>
       </Expression>
       <Expression xsi:type="Disable">
         <Builder xsi:type="Combinator">
@@ -844,7 +842,7 @@ def process(value):
         <Combinator xsi:type="cv:BackgroundSubtraction">
           <cv:BackgroundFrames>1</cv:BackgroundFrames>
           <cv:AdaptationRate>1</cv:AdaptationRate>
-          <cv:ThresholdValue>70</cv:ThresholdValue>
+          <cv:ThresholdValue>30</cv:ThresholdValue>
           <cv:ThresholdType>Binary</cv:ThresholdType>
           <cv:SubtractionMethod>Absolute</cv:SubtractionMethod>
         </Combinator>
@@ -886,20 +884,20 @@ def process(value):
             </cv:ArrayOfPoint>
             <cv:ArrayOfPoint>
               <cv:Point>
-                <cv:X>743</cv:X>
-                <cv:Y>72</cv:Y>
+                <cv:X>746</cv:X>
+                <cv:Y>42</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>1213</cv:X>
-                <cv:Y>72</cv:Y>
+                <cv:X>1245</cv:X>
+                <cv:Y>35</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>1213</cv:X>
-                <cv:Y>990</cv:Y>
+                <cv:X>1248</cv:X>
+                <cv:Y>1039</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>743</cv:X>
-                <cv:Y>990</cv:Y>
+                <cv:X>745</cv:X>
+                <cv:Y>1032</cv:Y>
               </cv:Point>
             </cv:ArrayOfPoint>
           </cv:Regions>
@@ -968,7 +966,7 @@ def process(value):
             <cv:Y>0</cv:Y>
           </cv:Offset>
           <cv:MinArea>500</cv:MinArea>
-          <cv:MaxArea>2000</cv:MaxArea>
+          <cv:MaxArea>6000</cv:MaxArea>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
@@ -1033,10 +1031,8 @@ def process(value):
       <Expression xsi:type="rx:BehaviorSubject">
         <Name>VelCentroid_roi2</Name>
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="MemberSelector">
-          <Selector>Area</Selector>
-        </Builder>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Area</Selector>
       </Expression>
       <Expression xsi:type="Disable">
         <Builder xsi:type="Combinator">
@@ -1049,7 +1045,7 @@ def process(value):
         <Combinator xsi:type="cv:BackgroundSubtraction">
           <cv:BackgroundFrames>1</cv:BackgroundFrames>
           <cv:AdaptationRate>1</cv:AdaptationRate>
-          <cv:ThresholdValue>70</cv:ThresholdValue>
+          <cv:ThresholdValue>30</cv:ThresholdValue>
           <cv:ThresholdType>Binary</cv:ThresholdType>
           <cv:SubtractionMethod>Absolute</cv:SubtractionMethod>
         </Combinator>
@@ -1403,7 +1399,7 @@ def process(value):
       </Expression>
       <Expression xsi:type="GreaterThan">
         <Operand xsi:type="IntProperty">
-          <Value>5</Value>
+          <Value>150</Value>
         </Operand>
       </Expression>
       <Expression xsi:type="Combinator">
@@ -1440,7 +1436,7 @@ def process(value):
       </Expression>
       <Expression xsi:type="GreaterThan">
         <Operand xsi:type="IntProperty">
-          <Value>5</Value>
+          <Value>150</Value>
         </Operand>
       </Expression>
       <Expression xsi:type="Combinator">
